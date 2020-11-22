@@ -52,9 +52,24 @@ class binary_search_tree:
         right_height = self._height ( cur_node.right_child, cur_height + 1 )
         return max ( left_height, right_height )
 
+    def search ( self, value ):
+        if( self.root != None ):
+            return self._search ( value, self.root )
+        else:
+            return False
+
+    def _search ( self, value, cur_node ):
+        if ( value == cur_node.value ):
+            return True
+        elif ( value < cur_node.value and cur_node.left_child != None ):
+            return self._search ( value, cur_node.left_child )
+        elif ( value > cur_node.value and cur_node.right_child != None ):
+            return self._search ( value, cur_node.right_child )
+        return False
 tree = binary_search_tree () 
 tree.insert ( 1 )
 tree.insert ( 2 )
 tree.insert ( 4 )
 tree.insert ( 3 )
 tree.print_tree ()
+print ( tree.search ( 4 ) )
